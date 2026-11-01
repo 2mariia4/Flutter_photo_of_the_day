@@ -1,17 +1,56 @@
-# photo_of_rhe_day_trafimova
+# Фото дня
 
-A new Flutter project.
+Приложение на Flutter, которое загружает случайные фотографии собак и пейзажей из интернета
 
-## Getting Started
+## Автор
 
-This project is a starting point for a Flutter application.
+ФИО: Трафимова Мария Алексеевна
 
-A few resources to get you started if this is your first Flutter project:
+Группа: ИСП-242
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+### Стек и версии
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Flutter версия 3.47.5
+Dart версия 3.13.4
+платформа: Web (Edge)
+пакет: http
+
+### Скриншот программы
+
+![](img/step2_Trafimova.png)
+
+### Запуск
+
+1. `git clone https://github.com/2mariia4/Flutter_photo_of_the_day`
+2. `cd photo_of_the_day_trafimova`
+3. `flutter pub get`
+4. `flutter run -d chrome`
+
+### Что изучили
+
+- Future и асинхронное программирование в Dart
+- async/await и обработку ошибок через try/catch
+- HTTP-запросы через пакет http
+- Управление состоянием через setState
+
+### Ответы на воросы
+
+1. **Что такое `Future<T>`? Чем отличается от обычного возвращаемого значения?**
+
+Обычная функция возвращает результат сразу, а `Future<T>` позже (например, когда сайт ответит). Это обещание, что значение типа T появится в будущем
+
+2. **Что делает `await`? Блокирует ли он весь поток выполнения?**
+
+`await` говорит программе ждать, пока запрос не закончится, а потом идти дальше. Весь поток он не блокирует приложение не зависает, интерфейс продолжает работать, просто текущая функция приостанавливается
+
+3. **Зачем `setState()` вызывается дважды в `_fetchPhoto()`?**
+
+Первый раз чтобы включить загрузку `(_isLoading = true)`. Второй раз (в самом конце) чтобы завершить загрузку и показать готовую картинку `(_isLoading = false)`. Если сделать один раз, интерфейс не обновится как надо
+
+4. **Почему кнопке передаётся `_fetchPhoto` без скобок, а не `_fetchPhoto()`?**
+
+Без скобок мы передаем саму функцию, чтобы она вызвалась только при нажатии. Если написать со скобками `_fetchPhoto()`, то функция вызовется сразу же при запуске экрана, еще до того, как ты нажмешь на кнопку
+
+5. **Чем `Image.network()` отличается от `Image.asset()`?**
+
+`Image.network()` скачивает картинку из интернета по ссылке. `Image.asset()` берет картинку из папки внутри самого приложения, поэтому она работает без интернета
